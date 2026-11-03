@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- GitHub Pages отдаёт эту страницу и для вложенных адресов, поэтому задаём базу для относительных путей:
+     на user.github.io/repo/ это /repo/, на своём домене или локально это / -->
+<script>
+(function () {
+  var base = '/';
+  if (/\.github\.io$/.test(location.hostname)) {
+    var seg = location.pathname.split('/')[1];
+    if (seg) base = '/' + seg + '/';
+  }
+  document.write('<base href="' + base + '">');
+})();
+</script>
+<title>Страница не найдена — Хурсанд Атажанов</title>
+<meta name="description" content="Такой страницы нет. Вернитесь на главную страницу сайта Хурсанда Атажанова.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#23327F">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap navrow">
+    <a class="logo" href="index.html" aria-label="Хурсанд Атажанов — на главную">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M4 8l16 8M20 8L4 16"/></svg>
+    </a>
+    <div class="tools" style="margin-left:auto">
+      <a class="hot" href="hr.html">Для HR и ИИ</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="zone" style="padding-top:70px;min-height:60vh" aria-label="Страница не найдена">
+  <svg class="bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="var(--blob-line)" stroke-width="1.5">
+      <path d="M-40 110C120 30 260 180 380 110S520 -30 640 50 520 250 330 290 -60 320 -40 110Z" fill="var(--blob1)"/>
+      <path d="M820 70C960 -10 1120 50 1260 130V410C1120 430 940 370 860 290S700 130 820 70Z" fill="var(--blob2)"/>
+      <path d="M760 600C900 540 1060 600 1240 560V860H700C640 800 640 650 760 600Z" fill="var(--blob1)"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="card">
+      <h1 style="margin:0 0 12px;font-size:28px">Страница не найдена</h1>
+      <p class="lead404">Ошибка 404: такого адреса на сайте нет.</p>
+      <a class="back" href="index.html">На главную</a>
+    </div>
+  </div>
+</section>
+</main>
+
+</body>
+</html>
