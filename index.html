@@ -278,19 +278,46 @@
     <p class="flow-sub todo" data-file="stages" data-path="subtitle">добавить</p>
 
     <div class="flow" id="flowbox">
-      <svg aria-hidden="true">
-        <defs><linearGradient id="flowg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
-          <stop offset="0" stop-color="#2F9BDB"/><stop offset=".5" stop-color="#F2A93B"/><stop offset="1" stop-color="#E0508F"/>
-        </linearGradient></defs>
+      <svg class="trail" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="flowg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+            <stop offset="0" stop-color="#2F9BDB"/><stop offset=".5" stop-color="#F2A93B"/><stop offset="1" stop-color="#E0508F"/>
+          </linearGradient>
+          <!-- неровные края мазка, как у гуаши -->
+          <filter id="flowrough" filterUnits="userSpaceOnUse" x="-60" y="-60" width="1400" height="3000" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <mask id="flowmask" maskUnits="userSpaceOnUse" x="-60" y="-60" width="1400" height="3000">
+            <path class="reveal" d=""/>
+          </mask>
+          <linearGradient id="flow-wood" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E7B070"/><stop offset=".55" stop-color="#C98B4B"/><stop offset="1" stop-color="#8E5A2B"/>
+          </linearGradient>
+          <linearGradient id="flow-metal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F4F6FA"/><stop offset=".4" stop-color="#B8C0CC"/><stop offset="1" stop-color="#7B8494"/>
+          </linearGradient>
+        </defs>
         <path class="track" d=""/>
-        <path class="live" d="" stroke="url(#flowg)"/>
-        <circle class="head" r="16" cx="-50" cy="-50"/>
+        <g mask="url(#flowmask)"><g class="rough" filter="url(#flowrough)"><path class="ink" d="" fill="url(#flowg)"/></g></g>
+        <path class="wet" d=""/><path class="wet" d=""/><path class="wet" d=""/>
+        <!-- кисть: кончик стоит в (0,0), ручка уходит вправо, поворот и положение задаёт JS -->
+        <g class="brush" aria-hidden="true"><g class="bpose"><g class="bscale">
+          <path class="bhandle" d="M44 -5.5 L108 -3.2 Q114 0 108 3.2 L44 5.5Z" fill="url(#flow-wood)"/>
+          <path d="M50 -3.6 L104 -2" stroke="#fff" stroke-opacity=".35" stroke-width="1.2" stroke-linecap="round"/>
+          <rect x="23" y="-7.4" width="22" height="14.8" rx="2.2" fill="url(#flow-metal)"/>
+          <path d="M29 -7.4V7.4M35 -7.4V7.4" stroke="#000" stroke-opacity=".22" stroke-width="1"/>
+          <path class="btip" d="M0 0 C3 -3.6 11 -7 24 -7.4 L24 7.4 C11 7 3 3.6 0 0Z" fill="#2F9BDB"/>
+          <path d="M3 -1.6 C9 -4 15 -5 22 -5.2" stroke="#fff" stroke-opacity=".45" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        </g></g></g>
       </svg>
 
       <div class="step"><article class="fcard"><div class="top"><span class="num">1</span><h3>Этап 1</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
       <div class="step"><article class="fcard"><div class="top"><span class="num">2</span><h3>Этап 2</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
       <div class="step"><article class="fcard"><div class="top"><span class="num">3</span><h3>Этап 3</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
       <div class="step"><article class="fcard"><div class="top"><span class="num">4</span><h3>Результат</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
+      <!-- узлы, вспышки и брызги: поверх карточек, только визуально -->
+      <svg class="over" aria-hidden="true" focusable="false"></svg>
     </div>
   </div>
 </section>

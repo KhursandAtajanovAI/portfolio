@@ -104,19 +104,42 @@
 .flowsec h2{margin:0;text-align:center;font-size:clamp(28px,4.2vw,46px);font-weight:700;line-height:1.15}
 .flow-sub{width:min(560px,90%);margin:18px auto 0;text-align:center;color:var(--muted)}
 .flow{position:relative;margin-top:84px}
+/* без JS линию заменяет простая полоса, JS прячет её, когда рисует настоящую (класс .ready) */
+.flow::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:16px;margin-left:-8px;border-radius:8px;background:linear-gradient(var(--sky),var(--accent),var(--rose));z-index:0}
+.flow.ready::before{display:none}
 .flow>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
-.flow .track{fill:none;stroke:var(--sk);stroke-width:22;stroke-linecap:round;stroke-linejoin:round}
-.flow .live{fill:none;stroke-width:22;stroke-linecap:round;stroke-linejoin:round}
-.flow .head{fill:var(--green);stroke:#fff;stroke-width:4;filter:drop-shadow(0 0 10px rgba(45,190,96,.9))}
+.flow>svg.over{z-index:2}
+.flow .track{fill:none;stroke:var(--sk);stroke-width:18;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+.flow .reveal{fill:none;stroke:#fff;stroke-width:70;stroke-linecap:butt;stroke-linejoin:round}
+.flow .wet{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;opacity:0}
+.flow .brush{pointer-events:none}
+.flow .btip{transition:none}
+/* узлы на линии у карточек */
+.flow .node .core{fill:var(--sk2);stroke:var(--card);stroke-width:3;transform-box:fill-box;transform-origin:center;transform:scale(.55);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),fill .3s ease}
+.flow .node.lit .core{fill:var(--c);transform:scale(1);filter:drop-shadow(0 0 7px var(--c))}
 .step{position:relative;z-index:1;display:flex;margin-bottom:112px}
-.step:last-child{margin-bottom:0}
+.step:last-of-type{margin-bottom:0}
 .step:nth-child(odd){justify-content:flex-start}
 .step:nth-child(even){justify-content:flex-end}
 .step:nth-child(4n+1){--c:var(--sky)}.step:nth-child(4n+2){--c:var(--accent)}.step:nth-child(4n+3){--c:var(--rose)}.step:nth-child(4n+4){--c:var(--green)}
-.fcard{width:40%;margin:0 2%;border-radius:30px;padding:26px 30px 30px;background:var(--card);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--c);
-  transition:opacity .7s ease,transform .7s ease}
-.js .fcard{opacity:0;transform:translateY(34px)}
-.js .fcard.on{opacity:1;transform:none}
+/* карточка: без JS видна сразу; с JS (.ready) нейтральная и скрытая, пока кисть не подойдёт к узлу */
+.fcard{width:40%;margin:0 2%;border-radius:30px;padding:26px 30px 30px;background:var(--card);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--c)}
+@media (prefers-reduced-motion:no-preference){
+  .flow.ready .fcard{opacity:0;transform:translateY(40px) rotate(-2deg) scale(.94);border-color:var(--line);box-shadow:8px 8px 0 var(--sk);
+    transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1),border-color .7s ease,box-shadow .7s ease}
+  .flow.ready .step:nth-child(even) .fcard{transform:translateY(40px) rotate(2deg) scale(.94)}
+  .flow.ready .step:nth-child(n) .fcard.on{opacity:1;transform:none;border-color:var(--ink);box-shadow:8px 8px 0 var(--c)}
+  .flow.ready .fcard .num,.flow.ready .fcard h3,.flow.ready .fcard p{opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+  .flow.ready .fcard .num{transition-delay:.16s}
+  .flow.ready .fcard h3{transition-delay:.08s}
+  .flow.ready .fcard p{transition-delay:0s}
+  .flow.ready .fcard.on .num,.flow.ready .fcard.on h3,.flow.ready .fcard.on p{opacity:1;transform:none}
+  .flow.ready .fcard.on .num{transition-delay:.12s}
+  .flow.ready .fcard.on h3{transition-delay:.2s}
+  .flow.ready .fcard.on p{transition-delay:.28s}
+}
 .fcard .top{display:flex;align-items:center;gap:14px;margin-bottom:10px}
 .num{width:42px;height:42px;border-radius:50%;background:var(--c);color:#1B1B1B;font-weight:700;display:grid;place-items:center;flex:none;border:2px solid var(--ink)}
 .fcard h3{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:700}
@@ -182,8 +205,7 @@ textarea.field{height:130px;resize:vertical}
   .actions{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
-  .fcard{transition:none}
-  .js .fcard{opacity:1;transform:none}
+  .flow .node .core{transition:none}
   .cta .body,.cta .spd line{animation:none}
   .cta .lbl,.cta .body{transition:none}
 }
