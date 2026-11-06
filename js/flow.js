@@ -44,10 +44,12 @@
   var cur = 0, tgt = 0, wob = 0, wetK = 1, cosS = 1, lastTip = '';
   var running = false, raf = 0, last = 0, scrollQueued = false;
   var flickAt = -1, finalDone = false, rt = 0;
-  var forced = false, toggle = null;   // при системном reduced motion анимацию можно включить кнопкой
-  try { forced = window.localStorage.getItem('flowMotion') === '1'; } catch (e) { /* без хранилища работаем без памяти */ }
+  // Анимация включена по умолчанию, даже если в системе стоит «уменьшить движение» (решение владельца сайта).
+  // Таким посетителям показывается кнопка «Выключить анимацию», выбор помнится в localStorage.
+  var forced = true, toggle = null;
+  try { if (window.localStorage.getItem('flowMotion') === '0') forced = false; } catch (e) { /* без хранилища работаем без памяти */ }
 
-  // анимация идёт, если система не просит уменьшить движение или посетитель сам включил её кнопкой
+  // анимация идёт, если система не просит уменьшить движение или она оставлена включённой для таких посетителей
   function motion() { return !mq.matches || forced; }
 
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
@@ -407,7 +409,7 @@
     if (!document.hidden) { calcTarget(); kick(); }
   });
 
-  // Кнопка видна только при системном «уменьшить движение»: по умолчанию мы его уважаем, но дать включить анимацию можно
+  // Кнопка видна только при системном «уменьшить движение»: анимацию можно выключить, и выбор запоминается
   function syncToggle() {
     if (!mq.matches) { if (toggle) { toggle.remove(); toggle = null; } return; }
     if (toggle) return;
@@ -427,7 +429,7 @@
   function label() {
     if (!toggle) return;
     toggle.setAttribute('aria-pressed', forced ? 'true' : 'false');
-    toggle.textContent = forced ? 'Выключить анимацию' : 'Включить анимацию (в системе включено «уменьшить движение»)';
+    toggle.textContent = forced ? 'Выключить анимацию' : 'Включить анимацию';
   }
   syncToggle();
 
