@@ -44,6 +44,11 @@
   var cur = 0, tgt = 0, wob = 0, wetK = 1, cosS = 1, lastTip = '';
   var running = false, raf = 0, last = 0, scrollQueued = false;
   var flickAt = -1, finalDone = false, rt = 0;
+  var forced = false, toggle = null;   // при системном reduced motion анимацию можно включить кнопкой
+  try { forced = window.localStorage.getItem('flowMotion') === '1'; } catch (e) { /* без хранилища работаем без памяти */ }
+
+  // анимация идёт, если система не просит уменьшить движение или посетитель сам включил её кнопкой
+  function motion() { return !mq.matches || forced; }
 
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
@@ -168,12 +173,13 @@
       ['width', 'height'].forEach(function (a) { e.setAttribute(a, a === 'width' ? W + 120 : H + 120); });
     });
     reveal.style.strokeDasharray = L;
-    bscale.setAttribute('transform', 'scale(' + (narrow ? 0.78 : 1) + ')');
+    bscale.setAttribute('transform', 'scale(' + (narrow ? 1.15 : 1.6) + ')');
 
     flow.classList.add('ready');
+    flow.classList.toggle('anim', motion());
     cur = frac * L;
     setStatesSilently();
-    if (mq.matches) { showAll(); return; }
+    if (!motion()) { showAll(); return; }
     brush.style.display = '';
     wets.forEach(function (w) { w.style.display = ''; });
     calcTarget();
@@ -227,7 +233,7 @@
   function calcTarget() {
     if (!L) return;
     var vh = window.innerHeight, top = flow.getBoundingClientRect().top;
-    var t = clamp((vh * 0.6 - top) / H, 0, 1);
+    var t = clamp((vh * 0.55 - top) / H, 0, 1);
     var v0 = vs[0], v1 = vs[vs.length - 1], tv = v0 + t * (v1 - v0);
     var lo = 0, hi = vs.length - 1;
     while (lo < hi) {
@@ -280,7 +286,7 @@
 
   // Вспышка: пульс-кольцо и 5-6 брызг краски. Элементы живут ~0,7 с и удаляются.
   function burst(i, isLast, delay) {
-    if (mq.matches || !nodes[i] || !nodes[i].animate) return;
+    if (!motion() || !nodes[i] || !nodes[i].animate) return;
     var g = nodes[i];
     var ring = svgEl('circle', { r: 13, fill: 'none', 'stroke-width': 3 });
     ring.style.stroke = 'var(--c)';
@@ -369,7 +375,7 @@
   }
 
   function kick() {
-    if (running || mq.matches || !L) return;
+    if (running || !motion() || !L) return;
     running = true;
     last = performance.now();
     raf = requestAnimationFrame(frame);
@@ -377,7 +383,7 @@
 
   /* ---------- события ---------- */
   function onScroll() {
-    if (scrollQueued || mq.matches) return;
+    if (scrollQueued || !motion()) return;
     scrollQueued = true;
     requestAnimationFrame(function () {
       scrollQueued = false;
@@ -396,10 +402,34 @@
   if (window.ResizeObserver) new ResizeObserver(rebuild).observe(flow);
   else window.addEventListener('resize', rebuild);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
-  if (mq.addEventListener) mq.addEventListener('change', build);
+  if (mq.addEventListener) mq.addEventListener('change', function () { syncToggle(); build(); });
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) { calcTarget(); kick(); }
   });
+
+  // Кнопка видна только при системном «уменьшить движение»: по умолчанию мы его уважаем, но дать включить анимацию можно
+  function syncToggle() {
+    if (!mq.matches) { if (toggle) { toggle.remove(); toggle = null; } return; }
+    if (toggle) return;
+    toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'motion-btn';
+    toggle.addEventListener('click', function () {
+      forced = !forced;
+      try { window.localStorage.setItem('flowMotion', forced ? '1' : '0'); } catch (e) { /* не страшно */ }
+      cur = 0; tgt = 0; wob = 0; finalDone = false;
+      label();
+      build();
+    });
+    flow.parentNode.insertBefore(toggle, flow);
+    label();
+  }
+  function label() {
+    if (!toggle) return;
+    toggle.setAttribute('aria-pressed', forced ? 'true' : 'false');
+    toggle.textContent = forced ? 'Выключить анимацию' : 'Включить анимацию (в системе включено «уменьшить движение»)';
+  }
+  syncToggle();
 
   P.on('stages', function (d) {
     if (!P.editing) P.fill('stages');
