@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "title": "FURRYONA",
+      "kind": "site",
+      "url": ""
+    },
+    {
+      "title": "Помощник врача",
+      "kind": "ml",
+      "url": ""
+    },
+    {
+      "title": "Проект: добавить",
+      "kind": "it",
+      "url": ""
+    },
+    {
+      "title": "Проект: добавить",
+      "kind": "project",
+      "url": ""
+    },
+    {
+      "title": "Проект: добавить",
+      "kind": "site",
+      "url": ""
+    },
+    {
+      "title": "Проект: добавить",
+      "kind": "ml",
+      "url": ""
+    }
+  ]
+}

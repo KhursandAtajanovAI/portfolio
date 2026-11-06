@@ -5,10 +5,16 @@
 
   var page = document.body.dataset.page;
   var FILES = page === 'home'
-    ? ['profile', 'now', 'about', 'works', 'skills', 'hours', 'links']
+    ? ['profile', 'now', 'about', 'works', 'skills', 'hours', 'links',
+       'deeds', 'projects', 'creative', 'interests', 'stages', 'contacts']
     : ['works']; // на остальных страницах нужен только список работ для подменю
   var DATA = {};
-  var P = window.Portfolio = { data: DATA, editing: false, render: render };
+  var HANDLERS = {};
+  var P = window.Portfolio = {
+    data: DATA, editing: false, render: render, fill: fill, setText: setText,
+    // js/*.js регистрируют отрисовку своих файлов: P.on('projects', function (data) {...})
+    on: function (name, fn) { (HANDLERS[name] = HANDLERS[name] || []).push(fn); }
+  };
 
   function $(sel) { return document.querySelector(sel); }
 
@@ -34,7 +40,24 @@
     } else {
       n.textContent = text;
     }
-    if (/добавить/i.test(text)) n.classList.add('todo');
+    n.classList.toggle('todo', /добавить/i.test(text));
+  }
+
+  function getPath(o, path) {
+    path.split('.').forEach(function (k) { o = o == null ? o : o[k]; });
+    return o;
+  }
+
+  // Подставляет в разметку тексты из файла: элементы с data-file и data-path.
+  function fill(file, root) {
+    var d = DATA[file];
+    if (!d) return;
+    Array.prototype.forEach.call((root || document).querySelectorAll('[data-file="' + file + '"][data-path]'), function (n) {
+      var v = getPath(d, n.dataset.path);
+      if (v == null) return;
+      setText(n, v, '');
+      n.classList.remove('fallback');
+    });
   }
 
   function section(c, title, file) {
@@ -100,7 +123,6 @@
         ul.appendChild(li);
       });
       c.appendChild(ul);
-      buildSubmenu();
     },
 
     hours: function (d) {
@@ -136,19 +158,15 @@
         chips.appendChild(a);
       });
       c.appendChild(chips);
-
-      if (d.contacts) {
-        var f = $('#contacts-body');
-        f.textContent = '';
-        f.appendChild(node('h2', '', d.contacts.title, 'links', 'contacts.title'));
-        f.appendChild(node('p', '', d.contacts.text, 'links', 'contacts.text'));
-      }
     }
   };
 
   function render(name) {
-    if (DATA[name] && R[name] && page === 'home') R[name](DATA[name]);
-    else if (name === 'works') buildSubmenu();
+    var d = DATA[name];
+    if (!d) return;
+    if (page === 'home' && R[name]) R[name](d);
+    (HANDLERS[name] || []).forEach(function (fn) { fn(d); });
+    if (name === 'works') buildSubmenu();
   }
 
   // Подменю «Работы» собирается из записей works.json.
@@ -207,7 +225,12 @@
   }
 
   initMenu();
-  Promise.all(FILES.map(load)).then(function () {
+  // ждём и данные, и DOMContentLoaded: к этому моменту выполнены все js/*.js и их обработчики зарегистрированы
+  var domReady = new Promise(function (resolve) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', resolve);
+    else resolve();
+  });
+  Promise.all(FILES.map(load).concat(domReady)).then(function () {
     FILES.forEach(render);
     P.ready = true;
     maybeEdit();

@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "kind": "draw",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "result",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "ba",
+      "title": "добавить",
+      "before": "",
+      "after": ""
+    },
+    {
+      "kind": "draw",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "ba",
+      "title": "добавить",
+      "before": "",
+      "after": ""
+    },
+    {
+      "kind": "result",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "draw",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "ba",
+      "title": "добавить",
+      "before": "",
+      "after": ""
+    },
+    {
+      "kind": "result",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "draw",
+      "title": "добавить",
+      "image": ""
+    },
+    {
+      "kind": "ba",
+      "title": "добавить",
+      "before": "",
+      "after": ""
+    },
+    {
+      "kind": "result",
+      "title": "добавить",
+      "image": ""
+    }
+  ]
+}

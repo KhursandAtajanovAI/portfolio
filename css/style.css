@@ -1,22 +1,3 @@
-:root{
-  --nav:#23327F; --b1:#3347C9; --b2:#7184F2; --zone:#F5F7FE; --blob1:#DCE2FA; --blob2:#ECEFFD; --blob-line:#C3CBF2;
-  --card:#FFFFFF; --ink:#16204A; --muted:#5B6592; --sk:#E3E7F8; --sk2:#C9D0EF; --accent:#F2A93B; --rose:#E0508F; --line:#D9DEF3;
-  --left-top:#E6EAFC; --shadow:rgba(35,50,127,.14); --edge:#D3D9F2;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --nav:#141B45; --b1:#1F2C8F; --b2:#3C4FC4; --zone:#12183A; --blob1:#1D2656; --blob2:#182049; --blob-line:#2C3878;
-    --card:#1A2250; --ink:#EEF0FF; --muted:#A5AEDB; --sk:#2B3570; --sk2:#3A4690; --line:#2E3978;
-    --left-top:#222C66; --shadow:rgba(0,0,0,.45); --edge:#2E3978;
-  }
-}
-:root[data-theme="dark"]{
-  --nav:#141B45; --b1:#1F2C8F; --b2:#3C4FC4; --zone:#12183A; --blob1:#1D2656; --blob2:#182049; --blob-line:#2C3878;
-  --card:#1A2250; --ink:#EEF0FF; --muted:#A5AEDB; --sk:#2B3570; --sk2:#3A4690; --line:#2E3978;
-  --left-top:#222C66; --shadow:rgba(0,0,0,.45); --edge:#2E3978;
-}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 *{box-sizing:border-box}
@@ -68,6 +49,8 @@ p{margin:0}
 /* ---------- светлая зона с бланком ---------- */
 .zone{position:relative;background:var(--zone);padding:58px 0 90px;z-index:1;overflow:hidden}
 .zone .bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+/* низ зоны плавно сводится в плоский --zone, чтобы обрезанные пятна не давали шва со следующим разделом */
+.zone::after{content:"";position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(to bottom,transparent,var(--zone));z-index:1;pointer-events:none}
 .zone .wrap{z-index:2}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:34px;align-items:start}
 .blank{display:grid;grid-template-columns:250px minmax(0,1fr);grid-template-rows:46px 1fr}
@@ -152,7 +135,7 @@ a.chip:hover{background:var(--accent);color:#1B1B1B}
 }
 
 /* ---------- режим редактирования (#edit) ---------- */
-.editing h2{display:block !important;background:none !important;border-left:0 !important;padding-left:0 !important}
+.editing .center h2,.editing .side h2,.editing .zoneB h2{display:block !important;background:none !important;border-left:0 !important;padding-left:0 !important}
 .editing .tl-title,.editing .tl-date,.editing .lab{display:block}
 .editing .chips{display:block}
 .editing .chip{display:block;height:auto;padding:0;background:none;margin-bottom:6px}
@@ -170,3 +153,15 @@ a.chip:hover{background:var(--accent);color:#1B1B1B}
 .editbar p{flex:1 1 320px;font-size:13px}
 .editbar code{background:rgba(255,255,255,.16);padding:1px 5px;border-radius:4px}
 .ed-status{font-size:13px;color:var(--accent)}
+
+/* редактирование новых разделов */
+.editing .pill-t{display:block;min-width:min(420px,60vw)}
+.editing .box h3 .ed-field,.editing .crow .ed-field{flex:1}
+.editing .flowsec h2 .ed-field,.editing .flow-sub .ed-field{text-align:center}
+.editing .ogrid h3 span{display:inline}
+.ed-panel{margin-top:30px;padding:14px 16px;text-align:left;font-size:14px;background:var(--card);color:var(--ink);border:2px dashed var(--accent);border-radius:12px}
+.ed-panel summary{cursor:pointer;font-weight:700}
+.ed-row{display:grid;gap:6px;margin:12px 0;padding:10px;border:1px solid var(--line);border-radius:8px}
+.ed-row label{display:block;font-size:12px;font-weight:700;color:var(--muted)}
+.ed-row select{width:100%;padding:6px;font:inherit;color:inherit;background:var(--zone);border:1.5px dashed var(--accent);border-radius:6px}
+.ed-files{display:flex;gap:6px;flex-wrap:wrap}

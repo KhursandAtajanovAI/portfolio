@@ -14,11 +14,32 @@
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sections.css">
 <script src="js/main.js" defer></script>
+<script src="js/drum.js" defer></script>
+<script src="js/filters.js" defer></script>
+<script src="js/flow.js" defer></script>
+<script src="js/form.js" defer></script>
 </head>
 <body data-page="home" data-editable>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 18l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-go" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 3L21 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13l12-9" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 00-7.8 13.5L3 21l4.6-1.2A9 9 0 1012 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 8.5c.5 3 2.5 5 5.5 5.5l1.3-1.3-2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
 
 <a class="skip" href="#main">К содержимому</a>
 
@@ -32,7 +53,7 @@
         <li><a href="#top">Главная</a></li>
         <li><a href="#about">Обо мне</a></li>
         <li>
-          <a href="#works" aria-haspopup="true">Работы<span class="caret" aria-hidden="true"></span></a>
+          <a href="#projects" aria-haspopup="true">Работы<span class="caret" aria-hidden="true"></span></a>
           <ul class="sub">
             <li><a href="#works">Путь и работы</a></li>
           </ul>
@@ -42,7 +63,7 @@
       </ul>
     </nav>
     <div class="tools">
-      <a href="#contacts">Контакты</a>
+      <a href="#order">Контакты</a>
       <a class="hot" href="hr.html">Для HR и ИИ</a>
     </div>
   </div>
@@ -158,15 +179,190 @@
     </div>
   </div>
 </section>
+
+<!-- ================= Раздел 1: Меньше слов, больше дел ================= -->
+<section class="deeds" id="deeds" aria-labelledby="deeds-h">
+  <div class="wrap">
+    <div class="deeds-head">
+      <h2 class="pill" id="deeds-h"><span class="dot" aria-hidden="true"></span><span class="pill-t" data-file="deeds" data-path="pill">Меньше слов, больше дел</span></h2>
+
+      <a class="cta" href="#order" aria-label="Заказать">
+        <svg viewBox="0 0 300 112" aria-hidden="true">
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#F2A93B"/>
+              <stop offset=".55" stop-color="#F26B6B"><animate attributeName="offset" values=".4;.75;.4" dur="4s" repeatCount="indefinite"/></stop>
+              <stop offset="1" stop-color="#E0508F"/>
+            </linearGradient>
+          </defs>
+          <g class="spd" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+            <line x1="6" y1="34" x2="40" y2="34"/><line x1="0" y1="56" x2="36" y2="56"/><line x1="10" y1="78" x2="44" y2="78"/>
+          </g>
+          <g class="body">
+            <path d="M62 30 H198 V8 L292 56 L198 104 V82 H62 Q50 82 50 70 V42 Q50 30 62 30Z" fill="url(#cg)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M70 40 H190" stroke="#fff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <span class="lbl" aria-hidden="true">Заказать</span>
+      </a>
+    </div>
+
+    <!-- барабан проектов: крутится, зациклен, края растворяются -->
+    <div class="drumwrap">
+      <button class="dbtn" type="button" id="dprev" aria-label="Предыдущий проект"><svg aria-hidden="true"><use href="#i-l"/></svg></button>
+      <div class="drum" id="drum" role="group" aria-roledescription="карусель" aria-label="Проекты: крутите мышью, пальцем или стрелками">
+        <div class="dtrack" id="dtrack"><div class="dempty">Проекты не загрузились (content/projects.json). Запустите сайт через локальный сервер, см. README.</div></div>
+      </div>
+      <button class="dbtn" type="button" id="dnext" aria-label="Следующий проект"><svg aria-hidden="true"><use href="#i-r"/></svg></button>
+    </div>
+
+    <div class="dgrid">
+      <section class="box a" aria-labelledby="box-a">
+        <h3 id="box-a" data-file="deeds" data-path="blocks.a.title">Соцпродвижение</h3>
+        <blockquote class="q fallback" data-file="deeds" data-path="blocks.a.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <div class="fchips" data-group="a" role="group" aria-label="Фильтр креативных проектов">
+          <button type="button" data-v="all" aria-pressed="true">Всё</button>
+          <button type="button" data-v="draw" aria-pressed="false">Рисунки</button>
+          <button type="button" data-v="ba" aria-pressed="false">До и после</button>
+          <button type="button" data-v="result" aria-pressed="false">Результаты</button>
+        </div>
+      </section>
+      <section class="box b" aria-labelledby="box-b">
+        <h3 id="box-b" data-file="deeds" data-path="blocks.b.title">IT-услуги</h3>
+        <blockquote class="q fallback" data-file="deeds" data-path="blocks.b.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <div class="fchips" data-group="b" role="group" aria-label="Фильтр проектов">
+          <button type="button" data-v="all" aria-pressed="true">Все</button>
+          <button type="button" data-v="site" aria-pressed="false">Сайты</button>
+          <button type="button" data-v="ml" aria-pressed="false">ML</button>
+          <button type="button" data-v="it" aria-pressed="false">IT-задачи</button>
+          <button type="button" data-v="project" aria-pressed="false">Проекты</button>
+        </div>
+      </section>
+      <section class="box c" aria-labelledby="box-c">
+        <h3 id="box-c" data-file="deeds" data-path="blocks.c.title">Бюрократия и интересы</h3>
+        <blockquote class="q fallback" data-file="deeds" data-path="blocks.c.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <div class="fchips" data-group="c" role="group" aria-label="Фильтр интересов">
+          <button type="button" data-v="all" aria-pressed="true">Всё</button>
+          <button type="button" data-v="startup" aria-pressed="false">Стартапы</button>
+          <button type="button" data-v="shop" aria-pressed="false">Магазин</button>
+          <button type="button" data-v="charity" aria-pressed="false">Благотворительность</button>
+          <button type="button" data-v="invest" aria-pressed="false">Вклады</button>
+        </div>
+      </section>
+
+      <div class="low a1">
+        <p class="dlab" data-file="deeds" data-path="blocks.a.low">Креативные проекты</p>
+        <div class="tiles" id="tiles" aria-live="polite"><p class="fallback">Работы не загрузились (content/creative.json).</p></div>
+        <button class="more" type="button" id="moreA" hidden aria-expanded="false"><span>Показать ещё</span> <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
+      </div>
+      <div class="low b1" id="projects">
+        <p class="dlab" data-file="deeds" data-path="blocks.b.low">Проекты</p>
+        <div id="prows" aria-live="polite"><p class="fallback">Проекты не загрузились (content/projects.json).</p></div>
+        <button class="more" type="button" id="moreB" hidden aria-expanded="false"><span>Все проекты</span> <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
+      </div>
+      <div class="low c1">
+        <p class="dlab" data-file="deeds" data-path="blocks.c.low">Своё и на пробу</p>
+        <div class="tbl">
+          <div class="th" data-file="interests" data-path="title">Что у меня есть</div>
+          <div id="trows" aria-live="polite"><p class="empty fallback">Список не загрузился (content/interests.json).</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Раздел 2: Как это происходит ================= -->
+<section class="flowsec" id="flow" aria-labelledby="flow-h">
+  <div class="wrap">
+    <h2 id="flow-h" data-file="stages" data-path="title">Как это происходит</h2>
+    <p class="flow-sub todo" data-file="stages" data-path="subtitle">добавить</p>
+
+    <div class="flow" id="flowbox">
+      <svg aria-hidden="true">
+        <defs><linearGradient id="flowg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+          <stop offset="0" stop-color="#2F9BDB"/><stop offset=".5" stop-color="#F2A93B"/><stop offset="1" stop-color="#E0508F"/>
+        </linearGradient></defs>
+        <path class="track" d=""/>
+        <path class="live" d="" stroke="url(#flowg)"/>
+        <circle class="head" r="16" cx="-50" cy="-50"/>
+      </svg>
+
+      <div class="step"><article class="fcard"><div class="top"><span class="num">1</span><h3>Этап 1</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
+      <div class="step"><article class="fcard"><div class="top"><span class="num">2</span><h3>Этап 2</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
+      <div class="step"><article class="fcard"><div class="top"><span class="num">3</span><h3>Этап 3</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
+      <div class="step"><article class="fcard"><div class="top"><span class="num">4</span><h3>Результат</h3></div><p class="fallback">Текст не загрузился (content/stages.json).</p></article></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Раздел 3: Контакты и заказ ================= -->
+<section class="order" id="order" aria-labelledby="order-h">
+  <span class="blur" aria-hidden="true" style="left:-4%;top:12%;width:34%;height:46%"></span>
+  <span class="blur" aria-hidden="true" style="right:6%;top:10%;width:26%;height:38%;background:#F2D95C;opacity:.4"></span>
+  <span class="blur" aria-hidden="true" style="left:30%;bottom:-10%;width:30%;height:30%"></span>
+  <div class="wrap">
+    <h2 id="order-h" data-file="contacts" data-path="title">Контакты и заказ</h2>
+    <div class="ogrid">
+      <div>
+        <h3 data-file="contacts" data-path="lead"><span>Всегда</span> на связи</h3>
+        <div class="crow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span class="ph" data-file="contacts" data-path="city" data-contact="city" data-label="Город">Астана, Казахстан</span></div>
+        <div class="crow"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="ph todo" data-file="contacts" data-path="phone" data-contact="phone" data-label="Телефон">Телефон: добавить</span></div>
+        <div class="crow"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span class="ac todo" data-file="contacts" data-path="email" data-contact="email" data-label="Почта">Почта: добавить</span></div>
+        <div class="crow"><svg class="ic" aria-hidden="true"><use href="#i-tg"/></svg><span class="ac todo" data-file="contacts" data-path="telegram" data-contact="telegram" data-label="Telegram">Telegram: добавить</span></div>
+        <div class="crow"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span class="ac todo" data-file="contacts" data-path="whatsapp" data-contact="whatsapp" data-label="WhatsApp">WhatsApp: добавить</span></div>
+      </div>
+
+      <form id="orderform" novalidate aria-label="Форма заказа">
+        <label class="vh" for="f-name">Ваше имя</label>
+        <input class="field" type="text" id="f-name" name="name" placeholder="Ваше имя" autocomplete="name">
+
+        <label class="vh" for="f-email">Email (обязательно)</label>
+        <input class="field" type="email" id="f-email" name="email" placeholder="Email *" autocomplete="email" required aria-required="true" aria-describedby="f-email-err">
+        <p class="ferr" id="f-email-err" hidden></p>
+
+        <label class="vh" for="f-phone">Номер телефона (обязательно)</label>
+        <input class="field" type="tel" id="f-phone" name="phone" placeholder="Номер телефона *" autocomplete="tel" required aria-required="true" aria-describedby="f-phone-err">
+        <p class="ferr" id="f-phone-err" hidden></p>
+
+        <div id="f-wa-wrap">
+          <label class="vh" for="f-wa">Номер WhatsApp (обязательно)</label>
+          <input class="field" type="tel" id="f-wa" name="whatsapp" placeholder="Номер WhatsApp *" required aria-required="true" aria-describedby="f-wa-err">
+          <p class="ferr" id="f-wa-err" hidden></p>
+        </div>
+        <label class="chk"><input type="checkbox" id="f-same"> WhatsApp на том же номере</label>
+
+        <label class="vh" for="f-service">Тип услуги</label>
+        <select class="field" id="f-service" name="service">
+          <option value="" selected>Тип услуги</option>
+          <option>Соцпродвижение</option>
+          <option>IT-услуги</option>
+          <option>Бюрократия и бизнес</option>
+          <option>Другое</option>
+        </select>
+
+        <label class="vh" for="f-social">Ваши соцсети (по желанию)</label>
+        <input class="field" type="text" id="f-social" name="social" placeholder="Ваши соцсети: ссылки или ники (по желанию)">
+
+        <label class="vh" for="f-msg">Сообщение (обязательно)</label>
+        <textarea class="field" id="f-msg" name="message" placeholder="Сообщение *" required aria-required="true" aria-describedby="f-msg-err"></textarea>
+        <p class="ferr" id="f-msg-err" hidden></p>
+
+        <!-- ловушка для спам-ботов: людям не видна -->
+        <div class="hp" aria-hidden="true"><label>Не заполняйте это поле <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+        <button class="send" type="submit" id="f-send">Отправить</button>
+        <p class="consent" data-file="contacts" data-path="consent">Нажимая «Отправить», вы соглашаетесь на обработку указанных данных для ответа на заявку.</p>
+        <div class="status" id="f-status" role="status" aria-live="polite"></div>
+        <div id="f-actions" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="foot" id="contacts">
+<footer class="endline">
   <div class="wrap">
-    <div id="contacts-body">
-      <h2>Контакты</h2>
-      <p class="todo">добавить</p>
-    </div>
-    <a class="hrlink" href="hr.html">Для HR и ИИ-систем</a>
+    <p>Хурсанд Атажанов, Астана. <a href="hr.html">Для HR и ИИ-систем</a></p>
   </div>
 </footer>
 
