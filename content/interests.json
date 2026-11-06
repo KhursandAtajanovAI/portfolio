@@ -1,0 +1,30 @@
+{
+  "title": "Что у меня есть",
+  "items": [
+    {
+      "kind": "startup",
+      "text": "добавить",
+      "url": ""
+    },
+    {
+      "kind": "shop",
+      "text": "добавить",
+      "url": ""
+    },
+    {
+      "kind": "charity",
+      "text": "добавить",
+      "url": ""
+    },
+    {
+      "kind": "invest",
+      "text": "добавить",
+      "url": ""
+    },
+    {
+      "kind": "startup",
+      "text": "добавить",
+      "url": ""
+    }
+  ]
+}
