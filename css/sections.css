@@ -213,3 +213,11 @@ textarea.field{height:130px;resize:vertical}
   .cta .body,.cta .spd line{animation:none}
   .cta .lbl,.cta .body{transition:none}
 }
+
+/* пояснения в блоках А, В, С и заметка про цены */
+.deeds-note{margin:16px 0 0;max-width:760px;color:var(--muted);font-size:15px}
+.dtext{margin:0 0 10px;font-size:14px;line-height:1.5}
+.dtext b{display:block;font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.dproof{color:var(--muted)}
+.box .dtext:last-of-type{margin-bottom:16px}
+.flow-sub:empty{display:none}

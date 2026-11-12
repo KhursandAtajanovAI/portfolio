@@ -3,7 +3,7 @@
     {
       "title": "FURRYONA",
       "kind": "site",
-      "url": ""
+      "url": "https://furryona.com"
     },
     {
       "title": "Помощник врача",
@@ -11,24 +11,9 @@
       "url": ""
     },
     {
-      "title": "Проект: добавить",
-      "kind": "it",
-      "url": ""
-    },
-    {
-      "title": "Проект: добавить",
-      "kind": "project",
-      "url": ""
-    },
-    {
-      "title": "Проект: добавить",
+      "title": "Сайт-портфолио",
       "kind": "site",
-      "url": ""
-    },
-    {
-      "title": "Проект: добавить",
-      "kind": "ml",
-      "url": ""
+      "url": "https://khursandatajanovai.github.io/portfolio/"
     }
   ]
 }

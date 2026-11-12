@@ -4,25 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Хурсанд Атажанов — личный сайт-портфолио</title>
-<meta name="description" content="Хурсанд Атажанов, студент 4 курса направления «Технологии искусственного интеллекта» (ENU, Астана). Путь, работы и проекты.">
+<meta name="description" content="Хурсанд Атажанов, Астана. Делаю цифровую часть вашего дела: разбираюсь, предлагаю решение и сдаю готовое, с продуманным ТЗ. Сайты, магазины на Shopify, ИИ, продвижение.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="Хурсанд Атажанов — личный сайт-портфолио">
-<meta property="og:description" content="Студент 4 курса, «Технологии искусственного интеллекта», ENU. Путь, работы и проекты.">
+<meta property="og:description" content="Делаю цифровую часть вашего дела: разбираюсь, предлагаю решение и сдаю готовое, с продуманным ТЗ.">
 <!-- og:image нужен абсолютный адрес, добавьте его после публикации: <meta property="og:image" content="https://USER.github.io/REPO/images/avatar.jpg"> -->
 <meta name="theme-color" content="#23327F">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20261106d">
-<link rel="stylesheet" href="css/style.css?v=20261106d">
-<link rel="stylesheet" href="css/sections.css?v=20261106d">
-<script src="js/main.js?v=20261106d" defer></script>
-<script src="js/drum.js?v=20261106d" defer></script>
-<script src="js/filters.js?v=20261106d" defer></script>
-<script src="js/flow.js?v=20261106d" defer></script>
-<script src="js/form.js?v=20261106d" defer></script>
+<link rel="stylesheet" href="css/tokens.css?v=20261112a">
+<link rel="stylesheet" href="css/style.css?v=20261112a">
+<link rel="stylesheet" href="css/sections.css?v=20261112a">
+<script src="js/main.js?v=20261112a" defer></script>
+<script src="js/drum.js?v=20261112a" defer></script>
+<script src="js/filters.js?v=20261112a" defer></script>
+<script src="js/flow.js?v=20261112a" defer></script>
+<script src="js/form.js?v=20261112a" defer></script>
 </head>
 <body data-page="home" data-editable>
 
@@ -107,10 +107,11 @@
   <div class="wrap">
     <div class="bn-text" id="bn-text">
       <h1>Хурсанд Атажанов</h1>
+      <p class="bn-sub">Делаю цифровую часть вашего дела: сам разбираюсь, предлагаю решение и сдаю готовое, с продуманным ТЗ.</p>
       <p>Студент 4 курса, «Технологии искусственного интеллекта»</p>
       <p>Евразийский национальный университет (ENU)</p>
       <p>Живу в Астане</p>
-      <a class="btn" href="#works">Мои работы</a>
+      <div class="bn-actions"><a class="btn" href="#order">Заказать</a><a class="btn alt" href="#projects">Мои работы</a></div>
     </div>
     <div class="avatar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
@@ -207,6 +208,8 @@
       </a>
     </div>
 
+    <p class="deeds-note" data-file="deeds" data-path="note" data-reveal hidden></p>
+
     <!-- барабан проектов: крутится, зациклен, края растворяются -->
     <div class="drumwrap">
       <button class="dbtn" type="button" id="dprev" aria-label="Предыдущий проект"><svg aria-hidden="true"><use href="#i-l"/></svg></button>
@@ -218,8 +221,10 @@
 
     <div class="dgrid">
       <section class="box a" aria-labelledby="box-a">
-        <h3 id="box-a" data-file="deeds" data-path="blocks.a.title">Соцпродвижение</h3>
+        <h3 id="box-a" data-file="deeds" data-path="blocks.a.title">Социальное продвижение</h3>
         <blockquote class="q fallback" data-file="deeds" data-path="blocks.a.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <p class="dtext" data-reveal hidden><b>Что получаете</b><span data-file="deeds" data-path="blocks.a.gets"></span></p>
+        <p class="dtext dproof" data-reveal hidden><b>Подтверждение сейчас</b><span data-file="deeds" data-path="blocks.a.proof"></span></p>
         <div class="fchips" data-group="a" role="group" aria-label="Фильтр креативных проектов">
           <button type="button" data-v="all" aria-pressed="true">Всё</button>
           <button type="button" data-v="draw" aria-pressed="false">Рисунки</button>
@@ -230,6 +235,8 @@
       <section class="box b" aria-labelledby="box-b">
         <h3 id="box-b" data-file="deeds" data-path="blocks.b.title">IT-услуги</h3>
         <blockquote class="q fallback" data-file="deeds" data-path="blocks.b.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <p class="dtext" data-reveal hidden><b>Что получаете</b><span data-file="deeds" data-path="blocks.b.gets"></span></p>
+        <p class="dtext dproof" data-reveal hidden><b>Подтверждение сейчас</b><span data-file="deeds" data-path="blocks.b.proof"></span></p>
         <div class="fchips" data-group="b" role="group" aria-label="Фильтр проектов">
           <button type="button" data-v="all" aria-pressed="true">Все</button>
           <button type="button" data-v="site" aria-pressed="false">Сайты</button>
@@ -239,8 +246,10 @@
         </div>
       </section>
       <section class="box c" aria-labelledby="box-c">
-        <h3 id="box-c" data-file="deeds" data-path="blocks.c.title">Бюрократия и интересы</h3>
+        <h3 id="box-c" data-file="deeds" data-path="blocks.c.title">Проекты и интересы</h3>
         <blockquote class="q fallback" data-file="deeds" data-path="blocks.c.quote">Текст не загрузился (content/deeds.json).</blockquote>
+        <p class="dtext" data-reveal hidden><b>Что здесь</b><span data-file="deeds" data-path="blocks.c.gets"></span></p>
+        <p class="dtext dproof" data-reveal hidden><b>Подтверждение сейчас</b><span data-file="deeds" data-path="blocks.c.proof"></span></p>
         <div class="fchips" data-group="c" role="group" aria-label="Фильтр интересов">
           <button type="button" data-v="all" aria-pressed="true">Всё</button>
           <button type="button" data-v="startup" aria-pressed="false">Стартапы</button>
@@ -275,7 +284,7 @@
 <section class="flowsec" id="flow" aria-labelledby="flow-h">
   <div class="wrap">
     <h2 id="flow-h" data-file="stages" data-path="title">Как это происходит</h2>
-    <p class="flow-sub todo" data-file="stages" data-path="subtitle">добавить</p>
+    <p class="flow-sub" data-file="stages" data-path="subtitle"></p>
 
     <div class="flow" id="flowbox">
       <svg class="trail" aria-hidden="true" focusable="false">

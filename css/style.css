@@ -34,10 +34,14 @@ p{margin:0}
   linear-gradient(110deg,var(--b1),var(--b2));min-height:400px}
 .banner>.wrap{min-height:400px}
 .drips{position:absolute;left:0;top:-1px;width:100%;height:clamp(96px,15vw,200px);display:block;pointer-events:none;z-index:1}
-.bn-text{max-width:520px;padding:150px 0 80px;position:relative;z-index:2;color:#fff}
+.bn-text{max-width:600px;padding:150px 0 80px;position:relative;z-index:2;color:#fff}
 .bn-text h1{margin:0 0 14px;font-size:clamp(28px,4.4vw,40px);line-height:1.15;font-weight:700}
 .bn-text p{margin:6px 0;font-size:17px;color:rgba(255,255,255,.9)}
-.bn-text .btn{display:flex;align-items:center;justify-content:center;width:170px;height:40px;border-radius:999px;background:var(--accent);color:#1B1B1B;font-weight:600;margin-top:26px}
+.bn-text .bn-sub{margin:0 0 14px;font-size:19px;font-weight:500;line-height:1.4;color:#fff}
+.bn-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.bn-text .btn{display:flex;align-items:center;justify-content:center;width:170px;height:40px;border-radius:999px;background:var(--accent);color:#1B1B1B;font-weight:600}
+.bn-text .btn.alt{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.85)}
+.bn-text .btn.alt:hover{background:rgba(255,255,255,.16)}
 .banner.mini,.banner.mini>.wrap{min-height:0}
 .banner.mini .bn-text{padding:120px 0 56px}
 .avatar{position:absolute;right:12px;bottom:-190px;width:380px;height:380px;border-radius:50%;
@@ -139,7 +143,8 @@ a.chip:hover{background:var(--accent);color:#1B1B1B}
 .editing .tl-title,.editing .tl-date,.editing .lab{display:block}
 .editing .chips{display:block}
 .editing .chip{display:block;height:auto;padding:0;background:none;margin-bottom:6px}
-.editing .bn-text .btn{width:auto;height:auto;border-radius:10px;padding:4px;margin-top:16px;display:block}
+.editing .bn-text .btn{width:auto;height:auto;border-radius:10px;padding:4px;display:block}
+.editing .bn-actions{display:block}
 .ed-field{display:block;width:100%;min-height:0;margin:2px 0;padding:4px 6px;font:inherit;line-height:inherit;color:inherit;
   background:rgba(242,169,59,.14);border:1.5px dashed var(--accent);border-radius:6px;resize:none;overflow:hidden}
 .ed-url{display:block;margin:2px 0 6px;font-size:13px;color:var(--muted)}
@@ -165,3 +170,10 @@ a.chip:hover{background:var(--accent);color:#1B1B1B}
 .ed-row label{display:block;font-size:12px;font-weight:700;color:var(--muted)}
 .ed-row select{width:100%;padding:6px;font:inherit;color:inherit;background:var(--zone);border:1.5px dashed var(--accent);border-radius:6px}
 .ed-files{display:flex;gap:6px;flex-wrap:wrap}
+
+/* навыки: нумерованный список с жирным началом */
+.slist{margin:8px 0 0;padding-left:22px}
+.slist li{margin-top:10px}
+.slist li::marker{color:var(--accent);font-weight:700}
+
+.card a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}

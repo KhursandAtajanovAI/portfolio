@@ -2,30 +2,30 @@
   "title": "Ссылки",
   "lines": [
     {
-      "text": "Магазин FURRYONA: добавить ссылку",
-      "url": ""
+      "text": "GitHub: khursandatajanovai",
+      "url": "https://github.com/khursandatajanovai"
     },
     {
-      "text": "Проект помощника врача: добавить ссылку",
-      "url": ""
+      "text": "Магазин FURRYONA (скоро открытие)",
+      "url": "https://furryona.com"
     },
     {
-      "text": "Резюме: добавить ссылку",
+      "text": "Резюме: будет позже",
       "url": ""
     }
   ],
   "chips": [
     {
       "label": "Telegram",
-      "url": ""
+      "url": "https://t.me/smile_smiles"
     },
     {
       "label": "GitHub",
-      "url": ""
+      "url": "https://github.com/khursandatajanovai"
     },
     {
       "label": "Email",
-      "url": ""
+      "url": "mailto:akhmof@gmail.com"
     }
   ]
 }

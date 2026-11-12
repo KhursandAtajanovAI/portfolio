@@ -153,7 +153,11 @@
   $('moreA').addEventListener('click', function () { state.aMore = !state.aMore; renderA(); });
   $('moreB').addEventListener('click', function () { state.bMore = !state.bMore; renderB(); });
 
-  P.on('deeds', function () { if (!P.editing) P.fill('deeds'); });
+  P.on('deeds', function () {
+    if (!P.editing) P.fill('deeds');
+    // пояснения скрыты в разметке, пока тексты не подставлены (чтобы не светились пустые подписи)
+    Array.prototype.forEach.call(document.querySelectorAll('#deeds [data-reveal]'), function (n) { n.hidden = false; });
+  });
   P.on('interests', function () { if (!P.editing) P.fill('interests'); renderC(); });
   P.on('creative', renderA);
   P.on('projects', renderB);

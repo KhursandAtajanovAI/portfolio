@@ -47,14 +47,14 @@ python3 -m http.server 8000
 
 | Файл | Что внутри |
 | --- | --- |
-| `profile.json` | имя, строки в баннере, кнопка |
+| `profile.json` | имя, подзаголовок, строки в баннере, две кнопки (`buttons`) |
 | `now.json` | блок «Сейчас» |
 | `about.json` | «Кто я» |
 | `works.json` | «Путь и работы»: `date`, `title`, `text`, `url` |
-| `skills.json` | «Навыки и видение» |
+| `skills.json` | «Навыки и видение»: список `items` с `title` (жирное начало) и `text` |
 | `hours.json` | «Время работы» |
 | `links.json` | «Ссылки» и кнопки-ссылки справа |
-| `deeds.json` | заголовок, названия и цитаты блоков А, В, С, подписи над списками |
+| `deeds.json` | заголовок, заметка про цены `note`, блоки А, В, С (`title`, `quote`, `gets`, `proof`) и подписи над списками |
 | `projects.json` | проекты для барабана и списка: `title`, `kind` (`site`, `ml`, `it`, `project`), `url` |
 | `creative.json` | креативные плитки: `kind` (`draw`, `result`, `ba`), `title`, `image` или пара `before`/`after` |
 | `interests.json` | таблица «Что у меня есть»: `kind` (`startup`, `shop`, `charity`, `invest`), `text`, `url` |

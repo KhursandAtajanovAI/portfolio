@@ -4,6 +4,8 @@
   'use strict';
 
   var page = document.body.dataset.page;
+  // версия из адреса этого скрипта (?v=...): тянем edit.js той же версии, чтобы не попасть на старый кеш
+  var VER = (document.currentScript && document.currentScript.src.split('?')[1]) || '';
   var FILES = page === 'home'
     ? ['profile', 'now', 'about', 'works', 'skills', 'hours', 'links',
        'deeds', 'projects', 'creative', 'interests', 'stages', 'contacts']
@@ -79,15 +81,19 @@
       var c = $('#bn-text');
       c.textContent = '';
       c.appendChild(node('h1', '', d.name, 'profile', 'name'));
+      if (d.subtitle) c.appendChild(node('p', 'bn-sub', d.subtitle, 'profile', 'subtitle'));
       (d.lead || []).forEach(function (t, i) {
         c.appendChild(node('p', '', t, 'profile', 'lead.' + i));
       });
-      if (d.button) {
-        var b = node('a', 'btn', d.button.text, 'profile', 'button.text');
-        b.href = d.button.href || '#works';
-        b.dataset.urlPath = 'button.href';
-        c.appendChild(b);
-      }
+      var row = document.createElement('div');
+      row.className = 'bn-actions';
+      (d.buttons || []).forEach(function (btn, i) {
+        var b = node('a', i === 0 ? 'btn' : 'btn alt', btn.text, 'profile', 'buttons.' + i + '.text');
+        b.href = btn.href || '#works';
+        b.dataset.urlPath = 'buttons.' + i + '.href';
+        row.appendChild(b);
+      });
+      if (row.children.length) c.appendChild(row);
     },
 
     now: function (d) {
@@ -103,7 +109,20 @@
     },
 
     about: function (d) { paragraphs('about', $('#who'))(d); },
-    skills: function (d) { paragraphs('skills', $('#skills'))(d); },
+    skills: function (d) {
+      var c = $('#skills');
+      section(c, d.title, 'skills');
+      var ol = document.createElement('ol');
+      ol.className = 'slist';
+      (d.items || []).forEach(function (it, i) {
+        var li = document.createElement('li');
+        li.appendChild(node('strong', '', it.title, 'skills', 'items.' + i + '.title'));
+        li.appendChild(document.createTextNode(' '));
+        li.appendChild(node('span', '', it.text, 'skills', 'items.' + i + '.text'));
+        ol.appendChild(li);
+      });
+      c.appendChild(ol);
+    },
 
     works: function (d) {
       var c = $('#works');
@@ -220,7 +239,7 @@
     if (!/^#edit/.test(location.hash)) return;
     P.editLoaded = true;
     var s = document.createElement('script');
-    s.src = 'js/edit.js';
+    s.src = 'js/edit.js' + (VER ? '?' + VER : '');
     document.head.appendChild(s);
   }
 
