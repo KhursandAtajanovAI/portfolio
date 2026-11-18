@@ -177,3 +177,22 @@ a.chip:hover{background:var(--accent);color:#1B1B1B}
 .slist li::marker{color:var(--accent);font-weight:700}
 
 .card a{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+
+/* аккордеон («Сейчас», «Навыки и видение»): закрыт по умолчанию, раскрывается за 220 мс */
+.acc-h{margin:0;font-size:inherit}
+.acc-item+.acc-item{margin-top:8px}
+.acc-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin:0;padding:8px 12px 8px 10px;text-align:left;
+  font:700 15px/1.3 "Onest",system-ui,sans-serif;color:var(--ink);background:var(--sk);border:0;border-left:5px solid var(--accent);border-radius:0 8px 8px 0;cursor:pointer}
+.acc-btn:hover{background:var(--sk2)}
+.center .acc-btn{padding:10px 14px 10px 12px}
+.acc-ic{flex:none;width:8px;height:8px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .22s ease}
+.acc-item.open .acc-ic{transform:rotate(-135deg) translateY(-2px)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .22s ease}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-inner{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s linear .22s}
+.acc-item.open .acc-inner{visibility:visible;transition-delay:0s}
+.acc-inner p{margin:0;padding:10px 4px 6px;font-size:15px}
+@media (prefers-reduced-motion:reduce){.acc-ic,.acc-panel,.acc-inner{transition:none}}
+.editing .acc-h{display:block}
+.editing .acc-panel{grid-template-rows:1fr}
+.editing .acc-inner{visibility:visible}

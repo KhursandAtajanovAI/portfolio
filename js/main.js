@@ -67,6 +67,51 @@
     c.appendChild(node('h2', '', title, file, 'title'));
   }
 
+  // Аккордеон: заголовок-кнопка и сворачиваемый текст. По умолчанию всё закрыто.
+  // В режиме редактирования (js/edit.js) кнопка заменяется полем, а тексты раскрыты через CSS.
+  function accordion(c, file, items, nameKey) {
+    var wrap = document.createElement('div');
+    wrap.className = 'acc';
+    items.forEach(function (it, i) {
+      var id = 'acc-' + file + '-' + i;
+      var item = document.createElement('div');
+      item.className = 'acc-item';
+      var h = node('h3', 'acc-h', '', file, 'items.' + i + '.' + nameKey);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'acc-btn';
+      btn.id = id;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', id + '-panel');
+      var label = document.createElement('span');
+      label.textContent = it[nameKey];
+      var ic = document.createElement('i');
+      ic.className = 'acc-ic';
+      ic.setAttribute('aria-hidden', 'true');
+      btn.appendChild(label);
+      btn.appendChild(ic);
+      h.appendChild(btn);
+      var panel = document.createElement('div');
+      panel.className = 'acc-panel';
+      panel.id = id + '-panel';
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', id);
+      var inner = document.createElement('div');
+      inner.className = 'acc-inner';
+      inner.appendChild(node('p', '', it.text, file, 'items.' + i + '.text'));
+      panel.appendChild(inner);
+      btn.addEventListener('click', function () {
+        var open = !item.classList.contains('open');
+        item.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.appendChild(h);
+      item.appendChild(panel);
+      wrap.appendChild(item);
+    });
+    c.appendChild(wrap);
+  }
+
   function paragraphs(file, c) {
     return function (d) {
       section(c, d.title, file);
@@ -98,30 +143,15 @@
 
     now: function (d) {
       var c = $('#now');
-      section(c, d.title, 'now');
-      (d.items || []).forEach(function (it, i) {
-        var w = document.createElement('div');
-        w.className = 'it';
-        w.appendChild(node('span', 'lab', it.label, 'now', 'items.' + i + '.label'));
-        w.appendChild(node('p', '', it.text, 'now', 'items.' + i + '.text'));
-        c.appendChild(w);
-      });
+      c.textContent = '';
+      accordion(c, 'now', d.items || [], 'label');
     },
 
     about: function (d) { paragraphs('about', $('#who'))(d); },
     skills: function (d) {
       var c = $('#skills');
       section(c, d.title, 'skills');
-      var ol = document.createElement('ol');
-      ol.className = 'slist';
-      (d.items || []).forEach(function (it, i) {
-        var li = document.createElement('li');
-        li.appendChild(node('strong', '', it.title, 'skills', 'items.' + i + '.title'));
-        li.appendChild(document.createTextNode(' '));
-        li.appendChild(node('span', '', it.text, 'skills', 'items.' + i + '.text'));
-        ol.appendChild(li);
-      });
-      c.appendChild(ol);
+      accordion(c, 'skills', d.items || [], 'title');
     },
 
     works: function (d) {
